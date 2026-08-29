@@ -1,9 +1,9 @@
-title: neohiro
+title: FrenzyPenguin Media
 description: "Security hardening & privacy tools for Windows and Linux."
-url: "https://neohiro.github.io"
+url: "https://frenzypenguin-media.github.io"
 baseurl: ""
 github_username: neohiro
-github_repo: neohiro.github.io
+github_repo: frenzypenguin-media.github.io
 
 plugins:
   - jekyll-feed

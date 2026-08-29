@@ -1,6 +1,6 @@
 ---
 layout: default
-title: neohiro
+title: FrenzyPenguin Media
 description: "Security hardening & privacy tools for Windows and Linux. Defense is the best defense."
 ---
 
@@ -28,6 +28,27 @@ description: "Security hardening & privacy tools for Windows and Linux. Defense 
     </div>
   </div>
 </div>
+
+<!-- Media / Video Portfolio Section -->
+<section class="section" id="media-portfolio">
+  <div class="container">
+    <header class="section-header">
+      <h2>FrenzyPenguin Media</h2>
+      <p class="section-subtitle">Video deep-dives on security hardening, exploit mitigation, and privacy engineering</p>
+    </header>
+    
+    <div class="video-grid" id="video-grid">
+      <!-- Video cards rendered by JavaScript -->
+    </div>
+    
+    <div class="media-cta" style="text-align: center; margin-top: 48px;">
+      <a href="{{ '/media/' | relative_url }}" class="btn btn-secondary">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.814v-8l8 3.993-8 4.007z"/></svg>
+        View All Videos on YouTube
+      </a>
+    </div>
+  </div>
+</section>
 
 <section class="section" id="featured-tools">
   <div class="container">
@@ -130,31 +151,32 @@ description: "Security hardening & privacy tools for Windows and Linux. Defense 
   <div class="container">
     <header class="section-header">
       <h2>Community & Support</h2>
+      <p class="section-subtitle">Pick a project, then choose how to engage</p>
     </header>
 
     <div class="community-grid">
-      <article class="community-card">
+      <article class="community-card" onclick="window.open('https://github.com/neohiro?tab=repositories', '_blank', 'noopener')">
         <h3>Bug Reports</h3>
         <p>Structured issue templates on each repository with required diagnostics.</p>
-        <a href="https://github.com/neohiro/windows/issues/new/choose" target="_blank" rel="noopener">Open Issue</a>
+        <span class="card-action">Select a project →</span>
       </article>
 
-      <article class="community-card">
+      <article class="community-card" onclick="window.open('https://github.com/neohiro?tab=repositories', '_blank', 'noopener')">
         <h3>Security Vulnerabilities</h3>
         <p>Private disclosure via Security Advisories tab on each repository.</p>
-        <a href="https://github.com/neohiro/windows/security/advisories/new" target="_blank" rel="noopener">Report</a>
+        <span class="card-action">Select a project →</span>
       </article>
 
-      <article class="community-card">
+      <article class="community-card" onclick="window.open('https://github.com/neohiro?tab=repositories', '_blank', 'noopener')">
         <h3>Discussions</h3>
         <p>Questions, showcases, and feature requests in each repo's Discussions.</p>
-        <a href="https://github.com/neohiro/windows/discussions" target="_blank" rel="noopener">Join</a>
+        <span class="card-action">Select a project →</span>
       </article>
 
-      <article class="community-card">
+      <article class="community-card" onclick="window.open('https://github.com/sponsors/neohiro', '_blank', 'noopener')">
         <h3>Sponsor</h3>
         <p>Support ongoing development via GitHub Sponsors or Patreon.</p>
-        <a href="https://github.com/sponsors/neohiro" target="_blank" rel="noopener">Sponsor</a>
+        <span class="card-action">Sponsor neohiro →</span>
       </article>
     </div>
   </div>
@@ -211,5 +233,17 @@ description: "Security hardening & privacy tools for Windows and Linux. Defense 
     }
 
     type();
+
+    // Make community cards keyboard accessible
+    document.querySelectorAll('.community-card').forEach(card => {
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
+        }
+      });
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+    });
   });
 </script>
