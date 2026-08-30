@@ -540,43 +540,29 @@ p { color: var(--fg-muted); }
 
 /* Footer */
 .site-footer {
-  padding: 48px 0;
+  padding: 48px 0 32px;
   border-top: 1px solid var(--border);
   background: var(--bg-elevated);
 }
 
-.footer-tagline {
-  text-align: center;
-  font-size: 1rem;
-  color: var(--fg-muted);
-  margin-bottom: 16px;
+.footer-integrated {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
-.heart { color: var(--red); animation: pulse 1.5s ease-in-out infinite; }
-
-@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
-
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
+.footer-tagline {
   font-size: 0.875rem;
   color: var(--fg-subtle);
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-
-.footer-links a { color: var(--fg-muted); }
-.footer-links a:hover { color: var(--accent); }
-
-.footer-copyright {
   text-align: center;
-  font-size: 0.8125rem;
-  color: var(--fg-subtle);
 }
 
-.footer-copyright a { color: var(--fg-subtle); }
-.footer-copyright a:hover { color: var(--accent); }
+.footer-tagline .heart { color: var(--red); animation: pulse 1.5s ease-in-out infinite; }
+.footer-tagline a { color: var(--fg-subtle); }
+.footer-tagline a:hover { color: var(--accent); }
+
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
 
 /* Page Wrapper */
 .page-wrapper { display: flex; flex-direction: column; min-height: 100vh; }
@@ -690,22 +676,19 @@ p { color: var(--fg-muted); }
   gap: 24px;
 }
 
-/* Sponsor links section */
-.sponsor-links {
+/* Footer button row */
+.footer-button-row {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 10px;
   flex-wrap: wrap;
-  margin-top: 32px;
-  padding-top: 32px;
-  border-top: 1px solid var(--border);
 }
 
-.sponsor-links a {
+.footer-button-row a {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 16px;
+  padding: 7px 14px;
   border-radius: 6px;
   font-size: 0.85rem;
   font-weight: 600;
@@ -715,16 +698,25 @@ p { color: var(--fg-muted); }
   transition: all var(--transition);
 }
 
-.sponsor-links a:hover {
+.footer-button-row a:hover {
   border-color: var(--accent);
   color: var(--accent);
   transform: translateY(-1px);
 }
 
-.sponsor-links a.sponsor-red:hover {
+.footer-button-row a.sponsor-red:hover {
   border-color: var(--red);
   color: var(--red);
 }
+
+.footer-brand {
+  font-size: 0.8125rem;
+  color: var(--fg-subtle);
+  text-align: center;
+}
+
+.footer-brand a { color: var(--fg-subtle); }
+.footer-brand a:hover { color: var(--accent); }
 
 /* ── Link Guard ──────────────────────────────────────────────────────────── */
 .link-guard {
@@ -952,3 +944,70 @@ p { color: var(--fg-muted); }
   color: #fff;
 }
 .link-guard-btn-primary:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FPM PROMPT FIELD + BLINKING CURSOR + TYPING-ANIMATION MIRROR
+   ─────────────────────────────────────────────────────────────────────
+   The "Tell me what you like" screenwide input. The greyed-out animated
+   text is rendered in a sibling <span> (created by fpm-typing.js) so the
+   <input> itself stays form-friendly (a real input field, not a div).
+   ═══════════════════════════════════════════════════════════════════════ */
+.fpm-prompt-field {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+.fpm-prompt-field input,
+.fpm-prompt-field textarea {
+  width: 100%;
+  padding: 18px 20px;
+  font: 500 16px/1.4 var(--font-ui);
+  color: var(--fg);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  caret-color: var(--accent);
+}
+.fpm-prompt-field input:focus,
+.fpm-prompt-field textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+.fpm-prompt-field input::placeholder,
+.fpm-prompt-field textarea::placeholder {
+  color: transparent;
+}
+/* The mirror that holds the animated typing text. Floats over the input. */
+.fpm-typing-mirror {
+  position: absolute;
+  left: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--fg-subtle);
+  font: 500 16px/1.4 var(--font-ui);
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: calc(100% - 60px);
+}
+/* The blinking cursor: appended via ::after on the mirror when input is empty. */
+.fpm-typing-mirror::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: var(--accent);
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  animation: fpm-cursor-blink 1.05s steps(2, start) infinite;
+}
+.fpm-prompt-field.has-content .fpm-typing-mirror { display: none; }
+@keyframes fpm-cursor-blink {
+  to { visibility: hidden; }
+}
+/* Honour reduced-motion: still blink, but no slide/fade on the field. */
+@media (prefers-reduced-motion: reduce) {
+  .fpm-typing-mirror::after { animation-duration: 1.6s; }
+}

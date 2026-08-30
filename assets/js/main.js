@@ -849,7 +849,7 @@
   function init() {
     // Initialize all components
     new MatrixRain();
-    const glitch = new GlitchTransition();
+    const glitchTx = new GlitchTransition();
     new ParallaxBackground();
     new CardEffects();
     new ScrollAnimations();
@@ -859,22 +859,21 @@
     new LinkGuard();
     
     // Bind glitch transitions to internal links
-    const glitch = new GlitchTransition();
     document.querySelectorAll('a[href^="/"], a[href^="#"], a[href^="./"]').forEach(link => {
       if (link.hostname === window.location.hostname || link.href.startsWith('/') || link.href.startsWith('#')) {
         link.addEventListener('click', (e) => {
           if (!e.metaKey && !e.ctrlKey && !e.shiftKey) {
             e.preventDefault();
-            glitch.trigger(link.href, true);
+            glitchTx.trigger(link.href, true);
           }
         });
-      });
+      }
     });
     
     // External links
     document.querySelectorAll('a[target="_blank"]').forEach(link => {
       link.addEventListener('click', (e) => {
-        glitch.trigger(link.href, false);
+        glitchTx.trigger(link.href, false);
       });
     });
     
@@ -927,6 +926,80 @@
     `;
     document.head.appendChild(style);
   }
+
+  // ============================================
+  // PROMPT FIELD — animated placeholder + dynamic strings polling
+  // ============================================
+  //   Any input/textarea with [data-fpm-typing-placeholder] gets:
+  //     - a typing animation of brand quotes (until the user starts typing)
+  //     - a 60s poller that swaps in admin-triggered dynamic strings
+  //   See fpm-typing.js for the engine. The endpoint defaults to /api/strings;
+  //   override with <body data-fpm-strings-endpoint="https://render.example.com/api/strings">.
+  function initPromptField() {
+    if (!window.FpmTyping) return;
+    // Defensive: stop any pre-existing poller / observers before re-attach
+    // (this can happen on soft-navigations or hot-reload).
+    if (window.__fpmPromptFieldCleanup) window.__fpmPromptFieldCleanup();
+
+    const attach = () => {
+      const instances = window.FpmTyping.autoAttach({ mirrorClass: 'fpm-typing-mirror' });
+      instances.forEach(({ el }) => {
+        if (!el) return;
+        const wrapper = el.parentNode;
+        if (wrapper) wrapper.classList.add('fpm-prompt-field');
+        const update = () => {
+          if (wrapper) wrapper.classList.toggle('has-content', !!(el.value && el.value.length));
+        };
+        el.addEventListener('input', update);
+        el.addEventListener('focus', update);
+        el.addEventListener('blur', update);
+        update();
+      });
+      return instances;
+    };
+
+    let instances = attach();
+    // Start the dynamic-strings poller pointing at the render service.
+    const endpoint = (document.body && document.body.dataset.fpmStringsEndpoint)
+      || (window.FPM_STRINGS_ENDPOINT)
+      || 'https://wingman-hub-api.onrender.com/api/strings';
+    let poller = window.FpmTyping.startPoller ? window.FpmTyping.startPoller({ endpoint, instances }) : null;
+
+    // Throttled re-attach on DOM mutations: only when new elements with
+    // the data-attr appear. We avoid the chatty "re-attach every mutation"
+    // anti-pattern that would leak timers and replace mirrors constantly.
+    let scheduledAttach = false;
+    const obs = new MutationObserver(() => {
+      if (scheduledAttach) return;
+      scheduledAttach = true;
+      // rAF debounce: at most one attach per frame
+      requestAnimationFrame(() => {
+        scheduledAttach = false;
+        const fresh = document.querySelectorAll('[data-fpm-typing-placeholder]');
+        // Only re-attach if there are NEW elements we haven't already mirrored
+        const known = new Set(instances.map(({ el }) => el));
+        let changed = false;
+        fresh.forEach(el => { if (!known.has(el)) changed = true; });
+        if (changed) {
+          instances = attach();
+          if (poller && poller.setInstances) poller.setInstances(instances);
+        }
+      });
+    });
+    obs.observe(document.body, { childList: true, subtree: true });
+
+    window.__fpmPromptFieldCleanup = () => {
+      try { obs.disconnect(); } catch (_) {}
+      if (poller && poller.stop) { try { poller.stop(); } catch (_) {} }
+      instances.forEach(({ inst }) => { if (inst && inst.stop) { try { inst.stop(); } catch (_) {} } });
+    };
+  }
+
+  // Both scripts use `defer`, so they parse in document order before
+  // DOMContentLoaded. We just need to wait for the DOM.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPromptField);
+  } else { initPromptField(); }
 
   // Start when DOM is ready
   if (document.readyState === 'loading') {

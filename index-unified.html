@@ -1,0 +1,758 @@
+---
+layout: default
+title: Portfolio
+description: "The unified neohiro ecosystem. Security tooling, media, human progress tracking — all in one place."
+---
+
+<!-- Unified portfolio hero -->
+<section class="hero unified-hero" id="home">
+  <div class="unified-scan-bar" aria-hidden="true">
+    <span class="scan-tag">SCANNING ECOSYSTEM</span>
+    <span class="scan-sep">|</span>
+    <span class="scan-tag">neohiro</span>
+    <span class="scan-sep">|</span>
+    <span class="scan-tag">frenzypenguin.media</span>
+    <span class="scan-sep">|</span>
+    <span class="scan-tag">transhumanists</span>
+    <span class="scan-sep">|</span>
+    <span class="scan-tag">openstageisland</span>
+  </div>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badges" aria-label="Organisations">
+        <span class="badge badge-neohiro">NEOHIRO</span>
+        <span class="badge badge-fpm">FRENZYPENGUIN MEDIA</span>
+        <span class="badge badge-trans">TRANSHUMANISTS</span>
+        <span class="badge badge-osi">OPEN STAGE ISLAND</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="word word-1">The</span>
+        <span class="word word-2">full</span>
+        <span class="word word-3">stack.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Security tooling, indie media, human progress tracking,<br>
+        and open infrastructure — unified under one domain.
+      </p>
+
+      <!-- Unified searchbar / prompt bar -->
+      <div class="unified-prompt-bar" role="search" aria-label="Unified search and command">
+        <div class="prompt-input-cluster">
+          <svg class="prompt-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input
+            type="text"
+            id="unified-prompt"
+            class="prompt-input"
+            placeholder="Search everything… repos, tools, posts, activity, or ask me anything"
+            aria-label="Unified search and command input"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button class="prompt-submit" id="prompt-submit" aria-label="Submit prompt">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 2 11 13M22 2 15 22 11 13 2 9l20-7z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="prompt-suggestions" id="prompt-suggestions" aria-live="polite">
+          <span class="suggestion-hint">Try:</span>
+          <button class="suggestion-chip" data-query="show neohiro tools">neohiro tools</button>
+          <button class="suggestion-chip" data-query="latest transhumanist milestones">latest milestones</button>
+          <button class="suggestion-chip" data-query="contact neohiro">contact</button>
+          <button class="suggestion-chip" data-query="frenzypenguin media videos">media</button>
+        </div>
+        <div class="prompt-response" id="prompt-response" role="status" aria-live="polite" hidden></div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="#scrollfeeds" class="btn btn-primary">Explore All</a>
+        <a href="/contact" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Contact
+        </a>
+        <a href="/login" class="btn btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/>
+          </svg>
+          Login
+        </a>
+        <a href="/dashboard" class="btn btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          Dashboard
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Three-column scrollfeeds -->
+<section class="section scrollfeeds" id="scrollfeeds">
+  <div class="container">
+    <header class="section-header">
+      <h2>Live Across All Organisations</h2>
+      <p class="section-subtitle">Three parallel feeds — scroll together, stay updated everywhere</p>
+    </header>
+
+    <div class="feed-grid">
+      <!-- neohiro column -->
+      <div class="feed-column feed-column-neohiro" id="feed-neohiro">
+        <div class="feed-column-header">
+          <span class="feed-org-icon" aria-hidden="true">👽</span>
+          <h3 class="feed-org-name">neohiro</h3>
+          <span class="feed-badge">Security &amp; Privacy</span>
+          <span class="feed-live-dot" aria-label="Live feed"></span>
+        </div>
+        <div class="feed-counts" aria-label="Activity counts">
+          <span class="feed-count" title="Repositories" data-count="repo">—</span>
+          <span class="feed-count" title="Stars" data-count="stars">—</span>
+          <span class="feed-count" title="Latest release" data-count="release">—</span>
+        </div>
+        <ul class="feed-list" id="neohiro-feed" aria-live="polite">
+          <li class="feed-loading">
+            <span class="feed-loading-ring" aria-hidden="true"></span>
+            Scanning neohiro…
+          </li>
+        </ul>
+        <div class="feed-footer">
+          <a href="https://github.com/neohiro" class="feed-more" target="_blank" rel="noopener">All repos →</a>
+        </div>
+      </div>
+
+      <!-- frenzypenguin.media column -->
+      <div class="feed-column feed-column-fpm" id="feed-fpm">
+        <div class="feed-column-header">
+          <span class="feed-org-icon" aria-hidden="true">🐧</span>
+          <h3 class="feed-org-name">FrenzyPenguin Media</h3>
+          <span class="feed-badge">Indie Media</span>
+          <span class="feed-live-dot" aria-label="Live feed"></span>
+        </div>
+        <div class="feed-counts" aria-label="Activity counts">
+          <span class="feed-count" title="Videos" data-count="videos">—</span>
+          <span class="feed-count" title="Subscribers" data-count="subs">—</span>
+          <span class="feed-count" title="Latest post" data-count="post">—</span>
+        </div>
+        <ul class="feed-list" id="fpm-feed" aria-live="polite">
+          <li class="feed-loading">
+            <span class="feed-loading-ring" aria-hidden="true"></span>
+            Scanning FPM…
+          </li>
+        </ul>
+        <div class="feed-footer">
+          <a href="https://github.com/frenzypenguin-media" class="feed-more" target="_blank" rel="noopener">All repos →</a>
+        </div>
+      </div>
+
+      <!-- transhumanists column -->
+      <div class="feed-column feed-column-trans" id="feed-trans">
+        <div class="feed-column-header">
+          <span class="feed-org-icon" aria-hidden="true">🧬</span>
+          <h3 class="feed-org-name">transhumanists</h3>
+          <span class="feed-badge">Human Progress</span>
+          <span class="feed-live-dot" aria-label="Live feed"></span>
+        </div>
+        <div class="feed-counts" aria-label="Activity counts">
+          <span class="feed-count" title="Milestones" data-count="milestones">—</span>
+          <span class="feed-count" title="Categories" data-count="cats">—</span>
+          <span class="feed-count" title="Latest update" data-count="update">—</span>
+        </div>
+        <ul class="feed-list" id="trans-feed" aria-live="polite">
+          <li class="feed-loading">
+            <span class="feed-loading-ring" aria-hidden="true"></span>
+            Scanning transhumanists…
+          </li>
+        </ul>
+        <div class="feed-footer">
+          <a href="https://github.com/transhumanists" class="feed-more" target="_blank" rel="noopener">All repos →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- World map teaser -->
+<section class="section section-alt" id="world-map-teaser">
+  <div class="container">
+    <header class="section-header">
+      <h2>Global Activity</h2>
+      <p class="section-subtitle">Live world map from transhumanists dashboard — embedded here</p>
+    </header>
+    <div class="map-embed-wrapper">
+      <iframe
+        src="https://transhumanists.github.io/#world-map"
+        class="map-embed"
+        title="Transhumanists World Map"
+        loading="lazy"
+        aria-label="Interactive world map of human progress milestones"
+      ></iframe>
+    </div>
+    <p class="map-caption">
+      <a href="/dashboard#world-map" class="btn btn-ghost">Open full dashboard →</a>
+    </p>
+  </div>
+</section>
+
+<!-- Open Stage Island spotlight -->
+<section class="section" id="openstageisland">
+  <div class="container">
+    <header class="section-header">
+      <h2>Open Stage Island</h2>
+      <p class="section-subtitle">Free 24/7 open-air music stage in Second Life — part of the neohiro network</p>
+    </header>
+    <div class="osi-spotlight">
+      <div class="osi-info">
+        <p class="osi-tagline">Any electronic music artist can take the stage — no booking, no fee.</p>
+        <div class="osi-meta">
+          <span class="osi-coords">Region: Derwent · 248/128/22</span>
+        </div>
+        <div class="osi-actions">
+          <a href="secondlife://Derwent/248/128/22" class="btn btn-primary">Teleport in Second Life</a>
+          <a href="https://github.com/neohiro/openstageisland.github.io" class="btn btn-secondary" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sponsor section -->
+<section class="section section-sponsor" id="sponsor">
+  <div class="container">
+    <h2>Support the Stack</h2>
+    <p>All tools are free and open source. Sponsorship keeps the heartbeat going.</p>
+    <div class="sponsor-links">
+      <a href="https://github.com/sponsors/neohiro" class="sponsor-btn" target="_blank" rel="noopener">
+        ♥ Sponsor neohiro
+      </a>
+      <a href="https://github.com/sponsors/frenzypenguin-media" class="sponsor-btn" target="_blank" rel="noopener">
+        ♥ Sponsor FrenzyPenguin Media
+      </a>
+      <a href="https://github.com/sponsors/transhumanists" class="sponsor-btn" target="_blank" rel="noopener">
+        ♥ Sponsor transhumanists
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Network footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-network">
+      <span class="footer-network-label">The neohiro network:</span>
+      <a href="https://neohiro.github.io/">neohiro</a>
+      <a href="https://frenzypenguin.media/">frenzypenguin.media</a>
+      <a href="https://transhumanists.github.io/">transhumanists</a>
+      <a href="https://neohiro.github.io/openstageisland.github.io/">openstageisland</a>
+      <a href="https://github.com/neohiro">GitHub</a>
+    </div>
+    <p class="footer-legal">
+      &copy; 2024–2026 neohiro &middot; AGPL-3.0 &middot;
+      <a href="/privacy">Privacy</a> &middot;
+      <a href="/tos">Terms</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+/* ── Unified prompt bar ─────────────────────────────────────── */
+.unified-prompt-bar {
+  max-width: 680px;
+  margin: 0 auto 2rem;
+}
+.prompt-input-cluster {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.5rem 0.75rem;
+  transition: border-color 200ms, box-shadow 200ms;
+}
+.prompt-input-cluster:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
+}
+.prompt-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--fg-muted);
+  flex-shrink: 0;
+}
+.prompt-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--fg);
+  font-size: 0.95rem;
+  font-family: inherit;
+  min-width: 0;
+}
+.prompt-input::placeholder { color: var(--fg-muted); }
+.prompt-submit {
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  flex-shrink: 0;
+  transition: transform 150ms, opacity 150ms;
+}
+.prompt-submit svg { width: 14px; height: 14px; }
+.prompt-submit:hover { transform: scale(1.05); }
+.prompt-submit:active { transform: scale(0.95); }
+.prompt-suggestions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.25rem;
+  flex-wrap: wrap;
+}
+.suggestion-hint {
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+}
+.suggestion-chip {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.78rem;
+  color: var(--fg-muted);
+  cursor: pointer;
+  transition: all 150ms;
+}
+.suggestion-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+.prompt-response {
+  margin-top: 0.75rem;
+  padding: 1rem;
+  background: var(--bg-alt);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+  min-height: 48px;
+}
+.prompt-response[hidden] { display: none; }
+
+/* ── Three-column scrollfeeds ────────────────────────────────── */
+.feed-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 900px) {
+  .feed-grid { grid-template-columns: 1fr; }
+}
+.feed-column {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.feed-column-header {
+  padding: 1rem 1.25rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.feed-org-icon { font-size: 1.25rem; }
+.feed-org-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+.feed-badge {
+  font-size: 0.7rem;
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-radius: 20px;
+  padding: 0.1rem 0.5rem;
+  margin-left: auto;
+}
+.feed-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+.feed-counts {
+  padding: 0.5rem 1.25rem;
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.feed-count {
+  font-size: 0.75rem;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+}
+.feed-count::before { content: "—"; }
+.feed-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 360px;
+}
+.feed-list .feed-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1.25rem;
+  color: var(--fg-muted);
+  font-size: 0.85rem;
+}
+.feed-loading-ring {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.feed-item {
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  transition: background 150ms;
+}
+.feed-item:hover { background: color-mix(in srgb, var(--border) 20%, transparent); }
+.feed-item-icon { font-size: 0.9rem; flex-shrink: 0; }
+.feed-item-text { flex: 1; min-width: 0; }
+.feed-item-title {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--fg);
+}
+.feed-item-meta { font-size: 0.75rem; color: var(--fg-muted); }
+.feed-footer {
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid var(--border);
+}
+.feed-more { font-size: 0.82rem; color: var(--accent); text-decoration: none; }
+.feed-more:hover { text-decoration: underline; }
+
+/* Column-specific accent */
+.feed-column-neohiro .feed-badge { background: #1a3a1a; color: #4ade80; }
+.feed-column-fpm .feed-badge { background: #1a1a3a; color: #818cf8; }
+.feed-column-trans .feed-badge { background: #1a2a3a; color: #38bdf8; }
+
+/* ── Map embed ─────────────────────────────────────────────── */
+.map-embed-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  aspect-ratio: 16/7;
+}
+.map-embed {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+.map-caption { text-align: center; margin-top: 1rem; }
+
+/* ── OSI spotlight ──────────────────────────────────────────── */
+.osi-spotlight {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+}
+.osi-tagline { font-size: 1.1rem; margin-bottom: 0.75rem; }
+.osi-meta { margin-bottom: 1.5rem; }
+.osi-coords {
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+}
+.osi-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+/* ── Sponsor ───────────────────────────────────────────────── */
+.section-sponsor {
+  text-align: center;
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.section-sponsor h2 { margin-bottom: 0.5rem; }
+.section-sponsor p { color: var(--fg-muted); margin-bottom: 1.5rem; }
+.sponsor-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.sponsor-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: transform 150ms, box-shadow 150ms;
+}
+.sponsor-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+/* ── Footer ────────────────────────────────────────────────── */
+.site-footer {
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+}
+.footer-network {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+}
+.footer-network-label { color: var(--fg-muted); }
+.footer-network a { color: var(--accent); text-decoration: none; }
+.footer-network a:hover { text-decoration: underline; }
+.footer-legal {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+}
+.footer-legal a { color: var(--fg-muted); text-decoration: none; }
+.footer-legal a:hover { color: var(--accent); }
+
+/* ── Scan bar ──────────────────────────────────────────────── */
+.unified-scan-bar {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--accent);
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  opacity: 0.7;
+  letter-spacing: 0.05em;
+}
+.scan-sep { color: var(--fg-muted); }
+.scan-tag { background: color-mix(in srgb, var(--accent) 10%, transparent); padding: 0.1rem 0.4rem; border-radius: 4px; }
+
+/* ── Hero CTA ──────────────────────────────────────────────── */
+.hero-cta {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.25rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--fg);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 200ms;
+}
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+</style>
+
+<script>
+// ── Feed cascade ────────────────────────────────────────────
+(function () {
+  'use strict';
+  var liveAccent = '#22c55e'; // synced with .feed-live-dot color
+  var REPOS = [
+    { owner: 'neohiro',             name: 'neohiro.github.io',          label: 'neohiro',              icon: '👽', badge: 'Security & Privacy', col: 'neohiro-feed',   colId: 'feed-neohiro' },
+    { owner: 'frenzypenguin-media', name: 'frenzypenguin-media',         label: 'FrenzyPenguin Media', icon: '🐧', badge: 'Indie Media',       col: 'fpm-feed',       colId: 'feed-fpm'     },
+    { owner: 'transhumanists',      name: 'transhumanists.github.io',    label: 'transhumanists',       icon: '🧬', badge: 'Human Progress',    col: 'trans-feed',    colId: 'feed-trans'   },
+  ];
+  var MAX_PER_FEED = 8;
+
+  function escHtml(s) {
+    var d = document.createElement('div');
+    d.textContent = s == null ? '' : String(s);
+    return d.innerHTML;
+  }
+
+  // Track the in-flight prompt request so a new submission cancels the old one
+  var pendingPrompt = null;
+
+  function setUnreachable(ul, msg) {
+    if (!ul) return;
+    ul.innerHTML = '<li class="feed-item"><span class="feed-item-text"><span class="feed-item-meta">Unreachable (' + escHtml(msg) + ')</span></span></li>';
+  }
+
+  function fetchJSON(url, signal) {
+    return fetch(url, {
+      headers: { 'Accept': 'application/json' },
+      cache: 'no-store',
+      signal: signal
+    }).then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); });
+  }
+  function fetchRepos(r, signal) {
+    // /github/:owner/:name/commits?per_page=5 → server-side proxy with token
+    // Token never leaves the server; we get authenticated rate limits (5k/hr).
+    var path = '/github/' + encodeURIComponent(r.owner) + '/' + encodeURIComponent(r.name) + '/commits?per_page=5';
+    var ul = document.getElementById(r.col);
+    if (!ul) return Promise.resolve();
+    return fetchJSON(path, signal)
+      .then(function (commits) {
+        ul.innerHTML = '';
+        var items = Array.isArray(commits) ? commits.slice(0, MAX_PER_FEED) : [];
+        items.forEach(function (c) {
+          var li = document.createElement('li');
+          li.className = 'feed-item';
+          var first = (c && c.commit && c.commit.message ? c.commit.message : '').split('\n')[0].slice(0, 80);
+          var date = c && c.commit && c.commit.author && c.commit.author.date
+            ? new Date(c.commit.author.date).toLocaleDateString() : '—';
+          li.innerHTML =
+            '<span class="feed-item-icon">' + r.icon + '</span>' +
+            '<span class="feed-item-text">' +
+              '<span class="feed-item-title">' + escHtml(first) + '</span>' +
+              '<span class="feed-item-meta">' + escHtml(r.label) + ' · ' + escHtml(date) + '</span>' +
+            '</span>';
+          ul.appendChild(li);
+        });
+        if (ul.children.length === 0) {
+          ul.innerHTML = '<li class="feed-item"><span class="feed-item-text"><span class="feed-item-meta">No recent activity</span></span></li>';
+        }
+        var dot = document.querySelector('#' + r.colId + ' .feed-live-dot');
+        if (dot) dot.style.background = liveAccent;
+      })
+      .catch(function (err) {
+        if (err && err.name === 'AbortError') return;
+        setUnreachable(ul, (err && err.message) || 'offline');
+      });
+  }
+
+  // Single AbortController scopes all initial fetches; cancelled on unload.
+  var initialAbort = ('AbortController' in window) ? new AbortController() : null;
+  var initialSignal = initialAbort ? initialAbort.signal : undefined;
+  REPOS.forEach(function (r) { fetchRepos(r, initialSignal); });
+  window.addEventListener('pagehide', function () { if (initialAbort) initialAbort.abort(); });
+
+  // ── Unified prompt bar ───────────────────────────────────
+  var input = document.getElementById('unified-prompt');
+  var submit = document.getElementById('prompt-submit');
+  var response = document.getElementById('prompt-response');
+  var suggestions = document.getElementById('prompt-suggestions');
+
+  function submitPrompt(q) {
+    if (!q || !q.trim()) return;
+    if (response) { response.hidden = false; response.textContent = 'Processing…'; }
+    // Cancel any in-flight request before starting a new one
+    if (pendingPrompt) {
+      pendingPrompt.ac.abort();
+      clearTimeout(pendingPrompt.to);
+    }
+    var ac = new AbortController();
+    var to = setTimeout(function () { ac.abort(); }, 10000);
+    pendingPrompt = { ac: ac, to: to };
+    fetch('/api/triage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      signal: ac.signal,
+      body: JSON.stringify({ prompt: q, source: 'frenzypenguin.media-portfolio' })
+    })
+      .then(function (r) { clearTimeout(to); pendingPrompt = null; return r.json(); })
+      .then(function (data) {
+        if (response) { response.textContent = data.reply || data.message || 'Done.'; }
+      })
+      .catch(function (err) {
+        clearTimeout(to);
+        pendingPrompt = null;
+        if (err && err.name === 'AbortError') return; // superseded; UI already shows "Processing…"
+        var lower = q.toLowerCase();
+        var results = [];
+        if (lower.includes('tool') || lower.includes('security')) {
+          results.push({ text: 'neohiro tools: DNSCrypt Proxy GUI, Cripple-NetStrip, BlackGlass…', icon: '👽' });
+        }
+        if (lower.includes('media') || lower.includes('video')) {
+          results.push({ text: 'FrenzyPenguin Media: security deep-dives on YouTube', icon: '🐧' });
+        }
+        if (lower.includes('milestone') || lower.includes('progress')) {
+          results.push({ text: 'transhumanists: 7 categories of human progress milestones', icon: '🧬' });
+        }
+        if (results.length === 0) {
+          results.push({ text: 'Try: neohiro tools, latest milestones, contact, media, sponsor…', icon: '🔍' });
+        }
+        if (response) {
+          response.innerHTML = results.map(function (r) {
+            return '<div style="display:flex;gap:0.5rem;margin-bottom:0.5rem"><span>' + r.icon + '</span><span>' + escHtml(r.text) + '</span></div>';
+          }).join('');
+        }
+      });
+  }
+
+  if (submit) {
+    submit.addEventListener('click', function () { submitPrompt(input && input.value); });
+  }
+  if (input) {
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') submitPrompt(input.value);
+    });
+  }
+  if (suggestions) {
+    suggestions.addEventListener('click', function (e) {
+      var chip = e.target.closest('.suggestion-chip');
+      if (!chip) return;
+      var q = chip.dataset.query;
+      if (input) input.value = q;
+      submitPrompt(q);
+    });
+  }
+
+  // ── Scroll progress bar ─────────────────────────────────
+  var progress = document.createElement('div');
+  progress.className = 'scroll-progress';
+  document.body.appendChild(progress);
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    progress.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+  }, { passive: true });
+})();
+</script>
