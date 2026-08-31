@@ -38,3 +38,4 @@ exclude:
   - scripts
   - "*.ps1"
   - "*.sh"
+  - "github-social/"

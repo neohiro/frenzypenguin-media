@@ -1,5 +1,5 @@
 <!-- TEMPLATE-SHARED:HEADER -->
-{# readme-header.html â€” used as the top of every repo README.md.
+{# readme-header.html — used as the top of every repo README.md.
 
    Variables:
      org:    neohiro | fpm | osi | hplus
@@ -24,8 +24,9 @@
 
 ---
 
+
 <!-- TEMPLATE-SHARED:FOOTER -->
-{# readme-footer.html â€” used at the bottom of every repo README.md. #}
+{# readme-footer.html — used at the bottom of every repo README.md. #}
 
 ---
 {% include legal-block.html %}
@@ -33,9 +34,9 @@
 {% include sponsor-buttons.html %}
 {% include heartbeat-status.html %}
 
-<sub>Synced from <code>template-shared/_includes/</code> â€” last publish: {{ site.time | date: '%Y-%m-%d %H:%M UTC' }}</sub>
+<sub>Synced from <code>template-shared/_includes/</code> — last publish: {{ site.time | date: '%Y-%m-%d %H:%M UTC' }}</sub>
 
-{# readme-footer.html â€” used at the bottom of every repo README.md. #}
+{# readme-footer.html — used at the bottom of every repo README.md. #}
 
 ---
 {% include legal-block.html %}
@@ -43,7 +44,37 @@
 {% include sponsor-buttons.html %}
 {% include heartbeat-status.html %}
 
-<sub>Synced from <code>template-shared/_includes/</code> â€” last publish: {{ site.time | date: '%Y-%m-%d %H:%M UTC' }}</sub>
+<sub>Synced from <code>template-shared/_includes/</code> — last publish: {{ site.time | date: '%Y-%m-%d %H:%M UTC' }}</sub>
+
+{# readme-footer.html — used at the bottom of every repo README.md. #}
+
+---
+{% include legal-block.html %}
+{% include social-links.html %}
+{% include sponsor-buttons.html %}
+{% include heartbeat-status.html %}
+
+<sub>Synced from <code>template-shared/_includes/</code> — last publish: {{ site.time | date: '%Y-%m-%d %H:%M UTC' }}</sub>
+
+{# readme-footer.html — used at the bottom of every repo README.md. #}
+
+---
+{% include legal-block.html %}
+{% include social-links.html %}
+{% include sponsor-buttons.html %}
+{% include heartbeat-status.html %}
+
+<sub>Synced from <code>template-shared/_includes/</code> — last publish: {{ site.time | date: '%Y-%m-%d %H:%M UTC' }}</sub>
+
+
+{# readme-footer.html — used at the bottom of every repo README.md. #}
+
+---
+{% include legal-block.html %}
+{% include social-links.html %}
+{% include sponsor-buttons.html %}
+{% include heartbeat-status.html %}
+
+<sub>Synced from <code>template-shared/_includes/</code> — last publish: {{ site.time | date: '%Y-%m-%d %H:%M UTC' }}</sub>
 ` marker.
-
 

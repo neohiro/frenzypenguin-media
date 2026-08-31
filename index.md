@@ -12,7 +12,7 @@ description: "Security hardening & privacy tools for Windows and Linux. Defense 
         <span class="badge badge-fpm">FrenzyPenguin Media</span>
       </div>
 
-      <h1 class="hero-title">Defense is the best defense.</h1>
+      <h1 class="hero-title shimmer">Defense is the best defense.</h1>
 
       <div class="typing-container" aria-live="polite" aria-atomic="true">
         <p class="typing-text">
@@ -60,7 +60,7 @@ description: "Security hardening & privacy tools for Windows and Linux. Defense 
     <div class="tools-grid">
       {% assign featured = site.tools | where_exp: "tool", "tool.featured == true" | sort: "weight" %}
       {% for tool in featured %}
-        <article class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+        <article class="tool-card card-3d" itemscope itemtype="https://schema.org/SoftwareApplication">
           <div class="tool-icon" aria-hidden="true">
             {% if tool.icon %}
               {{ tool.icon }}
@@ -116,7 +116,7 @@ description: "Security hardening & privacy tools for Windows and Linux. Defense 
         </a>
       </article>
 
-      <article class="guide-card">
+      <article class="guide-card card-3d">
         <div class="guide-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M12 2l10 7v10l-10 7-10-7v-10l10-7z"/>
@@ -130,7 +130,7 @@ description: "Security hardening & privacy tools for Windows and Linux. Defense 
         </a>
       </article>
 
-      <article class="guide-card">
+      <article class="guide-card card-3d">
         <div class="guide-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <circle cx="12" cy="12" r="10"/>
@@ -155,25 +155,25 @@ description: "Security hardening & privacy tools for Windows and Linux. Defense 
     </header>
 
     <div class="community-grid">
-      <article class="community-card" onclick="window.open('https://github.com/neohiro?tab=repositories', '_blank', 'noopener')">
+      <article class="community-card card-3d" onclick="window.open('https://github.com/neohiro?tab=repositories', '_blank', 'noopener')">
         <h3>Bug Reports</h3>
         <p>Structured issue templates on each repository with required diagnostics.</p>
         <span class="card-action">Select a project →</span>
       </article>
 
-      <article class="community-card" onclick="window.open('https://github.com/neohiro?tab=repositories', '_blank', 'noopener')">
+      <article class="community-card card-3d" onclick="window.open('https://github.com/neohiro?tab=repositories', '_blank', 'noopener')">
         <h3>Security Vulnerabilities</h3>
         <p>Private disclosure via Security Advisories tab on each repository.</p>
         <span class="card-action">Select a project →</span>
       </article>
 
-      <article class="community-card" onclick="window.open('https://github.com/neohiro?tab=repositories', '_blank', 'noopener')">
+      <article class="community-card card-3d" onclick="window.open('https://github.com/neohiro?tab=repositories', '_blank', 'noopener')">
         <h3>Discussions</h3>
         <p>Questions, showcases, and feature requests in each repo's Discussions.</p>
         <span class="card-action">Select a project →</span>
       </article>
 
-      <article class="community-card" onclick="window.open('https://github.com/sponsors/neohiro', '_blank', 'noopener')">
+      <article class="community-card card-3d" onclick="window.open('https://github.com/sponsors/neohiro', '_blank', 'noopener')">
         <h3>Sponsor</h3>
         <p>Support ongoing development via GitHub Sponsors or Patreon.</p>
         <span class="card-action">Sponsor neohiro →</span>
