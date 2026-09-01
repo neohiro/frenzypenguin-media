@@ -3,7 +3,7 @@ description: "Security hardening & privacy tools for Windows and Linux."
 url: "https://frenzypenguin-media.github.io"
 baseurl: ""
 github_username: neohiro
-github_repo: frenzypenguin-media.github.io
+github_repo: frenzypenguin-media
 
 plugins:
   - jekyll-feed
