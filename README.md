@@ -3,7 +3,7 @@
 > Security hardening deep-dives, exploit mitigation tutorials, and privacy engineering.
 
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
-[![ Jekyll](https://img.shields.io/badge/Jekyll-3.9-blueviolet.svg)](https://jekyllrb.com/)
+[![ Jekyll](https://img.shields.io/badge/Jekyll-4.4-blueviolet.svg)](https://jekyllrb.com/)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-frenzypenguin--media.github.io-brightgreen)](https://frenzypenguin-media.github.io)
 
 **FrenzyPenguin Media** is the indie media and creative arm of the neohiro network.
