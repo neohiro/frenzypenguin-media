@@ -5,7 +5,7 @@
   'use strict';
 
   // ============================================
-  // MATRIX RAIN BACKGROUND
+  // MATRIX RAIN BACKGROUND (constrained to hero area)
   // ============================================
   class MatrixRain {
     constructor() {
@@ -28,8 +28,10 @@
     }
 
     resize() {
-      this.canvas.width = window.innerWidth;
-      this.canvas.height = window.innerHeight;
+      // Canvas is absolute-positioned inside .hero, so its layout size matches hero
+      const rect = this.canvas.getBoundingClientRect();
+      this.canvas.width = rect.width;
+      this.canvas.height = Math.max(rect.height, 400);
       this.columns = Math.floor(this.canvas.width / this.fontSize);
       this.drops = Array(this.columns).fill(1);
     }
