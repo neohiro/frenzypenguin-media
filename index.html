@@ -14,6 +14,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="FrenzyPenguin Media — Defense is the best defense">
 <meta name="twitter:description" content="FrenzyPenguin Media — open-source security hardening, privacy tooling and media by neohiro / METAPOD.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.github.com https://raw.githubusercontent.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'">
 <style>
 :root{
   --bg:#030710; --card:rgba(15,21,32,.85);
@@ -347,7 +348,7 @@ function initReveal(selector) {
     observer.observe(elm);
   });
 
-  return observer;
+  return { observer, disconnect: () => observer.disconnect() };
 }
 
 // ---- repo select burst: ripple + glitch flash ----
@@ -382,7 +383,7 @@ function glitchLogo(logoEl) {
   glitchTimer = setTimeout(() => logoEl.classList.remove('glitching'), CONFIG.GLITCH_DURATION);
 }
 
-function startTypewriter(typedEl, phrases) {
+function startTypewriter(typedEl, phrases, logoEl) {
   if (!typedEl || !phrases?.length) return;
 
   let phraseIndex = 0;
@@ -394,7 +395,7 @@ function startTypewriter(typedEl, phrases) {
       setTimeout(() => typePhrase(text, charIndex + 1), delay);
     } else {
       setTimeout(() => {
-        glitchLogo(document.getElementById('logo'));
+        glitchLogo(logoEl);
         erasePhrase(text, text.length);
       }, CONFIG.TYPEWRITER_HOLD_MS);
     }
@@ -423,40 +424,50 @@ function startRandomGlitch(logoEl) {
   tick();
 }
 
-function cleanupCore() {
+function cleanupCore(observers = []) {
   if (glitchTimer) clearTimeout(glitchTimer);
   if (randGlitchTimer) clearTimeout(randGlitchTimer);
   glitchTimer = null;
   randGlitchTimer = null;
+  observers.forEach(obs => {
+    if (obs && typeof obs.disconnect === 'function') obs.disconnect();
+  });
 }
 
 // Expose for page-level cleanup if needed
 window.__neohiroCoreCleanup = cleanupCore;
 /*__CORE_END__*/
-const io = initReveal('.card');
+const revealResult = initReveal('.card');
 document.querySelectorAll('.card').forEach(attachSelect);
 
 /* ---- typewriter tagline ---- */
-startTypewriter([
-  'Security hardening & privacy tooling',
-  'Exploit mitigations made simple',
-  'From ExploitProtection to HoneyScan',
-  'Encrypted DNS for everyone',
-  'Firewalls · sinkholes · honeypots',
-  'Zero telemetry. Full transparency.',
-  'STIG-grade guides for fresh installs',
-  'Guides, videos & community',
-  '29 open-source tools and counting',
-  'Defense is the best defense'
-]);
+startTypewriter(
+  document.getElementById('typed'),
+  [
+    'Security hardening & privacy tooling',
+    'Exploit mitigations made simple',
+    'From ExploitProtection to HoneyScan',
+    'Encrypted DNS for everyone',
+    'Firewalls · sinkholes · honeypots',
+    'Zero telemetry. Full transparency.',
+    'STIG-grade guides for fresh installs',
+    'Guides, videos & community',
+    '29 open-source tools and counting',
+    'Defense is the best defense'
+  ],
+  document.getElementById('logo')
+);
 
 /* ---- dynamic projects feed: committed snapshot first, cached API refresh ---- */
 const grid = document.getElementById('projects');
 const REPOS = {};
 let pendingName = null, dataDone = false, liveLoaded = false, lastCardRect = null;
 
+// Cleanup on page unload
+window.addEventListener('pagehide', () => window.__neohiroCoreCleanup([revealResult.observer]));
+
 function repoCard(r, i) {
-  const card = el('div', 'card'); card.style.transitionDelay = (i % 3 * 70) + 'ms';
+  const card = el('div', 'card'); card.style.transitionDelay = (i % 3 * CONFIG.REVEAL_DELAY_STAGGER) + 'ms';
   const a = card.appendChild(el('a', 'fill')); a.href = '#/r/' + encodeURIComponent(r.name);
   a.addEventListener('click', () => { lastCardRect = card.getBoundingClientRect(); });
   const h3 = el('h3'); h3.append(el('span', null, r.name), el('span', 'stars', '★ ' + fmt(r.stargazers_count)));
@@ -472,12 +483,12 @@ function renderRepos(all) {
   grid.innerHTML = '';
   all.forEach((r, i) => {
     REPOS[r.name.toLowerCase()] = r;
-    const c = repoCard(r, i); grid.appendChild(c); attachSelect(c); io.observe(c);
+    const c = repoCard(r, i); grid.appendChild(c); attachSelect(c); revealResult.observer.observe(c);
   });
 }
 
 /* fast path: pre-rendered snapshot ships with the site */
-fetch('repos.json').then(r => r.ok ? r.json() : null).then(rows => {
+fetchJson('repos.json').then(rows => {
   if (liveLoaded || !rows || !rows.length) return;
   renderRepos(rows); dataDone = true; if (pendingName) routeHash();
 }).catch(() => {});
