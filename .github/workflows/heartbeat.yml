@@ -5,6 +5,13 @@ on:
     - cron: '0 */6 * * *'
   workflow_dispatch: {}
 
+# Runs every 6 hours and pushes to a shared automation branch. Two overlapping
+# runs would force-push over each other's heartbeat and race to open a PR, so
+# serialise them.
+concurrency:
+  group: heartbeat
+  cancel-in-progress: false
+
 permissions:
   contents: write
   pull-requests: write

@@ -28,6 +28,22 @@ jobs:
           ruby-version: '3.3'
           bundler-cache: true
 
+      - name: Verify heartbeat generator
+        # generate.mjs only runs on the 6-hourly heartbeat schedule. If it throws,
+        # the step fails but nothing on the site breaks, so the breakage stays
+        # invisible until someone notices a stale SVG. Run it here so a syntax
+        # error or malformed output fails the PR.
+        run: |
+          node --check scripts/heartbeat/generate.mjs
+          out="$(mktemp -d)"
+          cp -r scripts "$out/scripts"
+          (cd "$out" && node scripts/heartbeat/generate.mjs)
+          test -s "$out/heartbeats/public.svg" \
+            || { echo "generator produced no output" >&2; exit 1; }
+          python3 -c "import xml.etree.ElementTree as E,sys; E.parse(sys.argv[1])" \
+            "$out/heartbeats/public.svg"
+          rm -rf "$out"
+
       - name: Build Jekyll Site
         run: bundle exec jekyll build
         env:
