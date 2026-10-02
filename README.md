@@ -1,80 +1,84 @@
-<!-- TEMPLATE-SHARED:HEADER -->
-{# readme-header.html — used as the top of every repo README.md.
+# FrenzyPenguin Media
 
-   Variables:
-     org:    neohiro | fpm | osi | hplus
-     title:  the repo name
-     blurb:  one-line description
+> Security hardening deep-dives, exploit mitigation tutorials, and privacy engineering.
 
-   Heartbeat also publishes /shared/repos/{owner}_{repo}/header.md which
-   can be appended after this for project-specific badges/stats. #}
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
+[![ Jekyll](https://img.shields.io/badge/Jekyll-4.4-blueviolet.svg)](https://jekyllrb.com/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-frenzypenguin--media.github.io-brightgreen)](https://frenzypenguin-media.github.io)
 
-{%- assign org_label = include.org -%}
-{%- case include.org -%}
-{%- when 'neohiro' %}{% assign org_label = 'neohiro' %}{% when 'fpm' %}{% assign org_label = 'FrenzyPenguin Media' %}{% when 'osi' %}{% assign org_label = 'Open Stage Island' %}{% when 'hplus' %}{% assign org_label = 'transhumanists' %}{% endcase -%}
+**FrenzyPenguin Media** is the indie media and creative arm of the neohiro network.
+We produce video deep-dives on security hardening, exploit mitigation, and privacy
+engineering for Windows and Linux.
 
-# {{ include.title }}
-
-> {{ include.blurb }}
-
-{% include badges.html org=include.org %}
-{% include heartbeat-status.html %}
-{% include sponsor-buttons.html %}
-{% include contact-card.html %}
+**Live site:** [frenzypenguin-media.github.io](https://frenzypenguin-media.github.io)
 
 ---
 
+## What we publish
 
-<!-- TEMPLATE-SHARED:FOOTER -->
-{# readme-footer.html — used at the bottom of every repo README.md. #}
+- Video tutorials on Windows STIG-style hardening
+- Deep-dives into exploit protection settings (ASR, CFG, DEP, SEHOP)
+- DNS privacy engineering (dnscrypt-proxy, encrypted DNS, sinkholes)
+- Network defense tooling walkthroughs
+- Privacy engineering case studies
 
----
-{% include legal-block.html %}
-{% include social-links.html %}
-{% include sponsor-buttons.html %}
-{% include heartbeat-status.html %}
-
-<sub>Synced from <code>template-shared/_includes/</code> — last publish: {{ site.time | date: '%Y-%m-%d %H:%M UTC' }}</sub>
-
-{# readme-footer.html — used at the bottom of every repo README.md. #}
+**Subscribe:** [YouTube @FrenzyPenguinMedia](https://www.youtube.com/FrenzyPenguinMedia?sub_confirmation=1)
 
 ---
-{% include legal-block.html %}
-{% include social-links.html %}
-{% include sponsor-buttons.html %}
-{% include heartbeat-status.html %}
 
-<sub>Synced from <code>template-shared/_includes/</code> — last publish: {{ site.time | date: '%Y-%m-%d %H:%M UTC' }}</sub>
+## Related repositories
 
-{# readme-footer.html — used at the bottom of every repo README.md. #}
+This repo is the **content source** for the FrenzyPenguin Media GitHub Pages site.
+The actual tools live in the [neohiro](https://github.com/neohiro) organization:
 
----
-{% include legal-block.html %}
-{% include social-links.html %}
-{% include sponsor-buttons.html %}
-{% include heartbeat-status.html %}
-
-<sub>Synced from <code>template-shared/_includes/</code> — last publish: {{ site.time | date: '%Y-%m-%d %H:%M UTC' }}</sub>
-
-{# readme-footer.html — used at the bottom of every repo README.md. #}
+| Tool | Repo | Description |
+|------|------|-------------|
+| ExploitProtection | [neohiro/ExploitProtection](https://github.com/neohiro/ExploitProtection) | Windows Exploit Protection GUI |
+| dnscrypt-proxy-gui | [neohiro/dnscrypt-proxy-gui](https://github.com/neohiro/dnscrypt-proxy-gui) | Encrypted DNS GUI |
+| Cripple-NetStrip | [neohiro/Cripple-NetStrip](https://github.com/neohiro/Cripple-NetStrip) | DNS sinkhole + firewall |
+| Windows Hardening | [neohiro/windows](https://github.com/neohiro/windows) | STIG-style Windows hardening |
+| Linux Hardening | [neohiro/linux](https://github.com/neohiro/linux) | Post-install Linux hardening |
 
 ---
-{% include legal-block.html %}
-{% include social-links.html %}
-{% include sponsor-buttons.html %}
-{% include heartbeat-status.html %}
 
-<sub>Synced from <code>template-shared/_includes/</code> — last publish: {{ site.time | date: '%Y-%m-%d %H:%M UTC' }}</sub>
+## Repository structure
 
-
-{# readme-footer.html — used at the bottom of every repo README.md. #}
+```
+frenzypenguin-media/
+├── _tools/          # Tool descriptions for the Jekyll catalog
+├── _includes/       # Shared Jekyll includes (badges, contact cards)
+├── _layouts/        # Page layouts
+├── _config.yml      # Jekyll configuration
+├── assets/          # CSS, JS, images
+├── github-social/   # GitHub card graphics
+├── heartbeats/      # Heart cadence signals (live counter data)
+├── index.md         # Homepage source
+├── media.md         # Video portfolio page
+└── repositories.md  # Full tools catalog page
+```
 
 ---
-{% include legal-block.html %}
-{% include social-links.html %}
-{% include sponsor-buttons.html %}
-{% include heartbeat-status.html %}
 
-<sub>Synced from <code>template-shared/_includes/</code> — last publish: {{ site.time | date: '%Y-%m-%d %H:%M UTC' }}</sub>
-` marker.
+## Contributing
 
+Found a security hardening technique we missed? Have a tool to submit?
+
+1. Open an issue with your suggestion or proposed addition
+2. For tool additions, include: name, tagline, repo URL, platform, language
+3. For content corrections, be specific and include sources
+
+For security vulnerabilities, see [SECURITY.md](SECURITY.md) for private disclosure.
+
+---
+
+## Sister sites
+
+- [neohiro](https://neohiro.github.io) — Security hardening & privacy tools
+- [transhumanists](https://transhumanists.github.io) — Transhumanism & human enhancement
+- [openstageisland](https://openstageisland.github.io) — Second Life music venue
+
+---
+
+## License
+
+GPL-3.0 — see [LICENSE](LICENSE) and [SECURITY.md](SECURITY.md).
